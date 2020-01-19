@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.1 (Python 3.8.0a1 on win32)" generated="20190422 16:58:24.697" rpa="false">
+<suite id="s1" name="DemoCSV" source="C:\Users\Corallo\eclipse-workspace\DemoCSV">
+<suite id="s1-s1" name="Demo" source="C:\Users\Corallo\eclipse-workspace\DemoCSV\demo.robot">
+<test id="s1-s1-t1" name="Methode 2 - Read file from csv">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>Methode(2):</arg>
+</arguments>
+<msg timestamp="20190422 16:58:25.244" level="INFO">Methode(2):</msg>
+<status status="PASS" starttime="20190422 16:58:25.243" endtime="20190422 16:58:25.244"></status>
+</kw>
+<kw name="Read Csv File" library="CSVLibrary">
+<arguments>
+<arg>sample.csv</arg>
+</arguments>
+<assign>
+<var>${ReadCSV}</var>
+</assign>
+<msg timestamp="20190422 16:58:25.245" level="INFO">${ReadCSV} = [['demo1', 'mode1'], ['demo2', 'mode2'], ['demo3', 'mode3'], ['', 'mode'], ['demo', ''], ['', '']]</msg>
+<status status="PASS" starttime="20190422 16:58:25.244" endtime="20190422 16:58:25.247"></status>
+</kw>
+<kw name="${cell} IN [ ${ReadCSV} ]" type="for">
+<kw name="${cell} = [['demo1', 'mode1'], ['demo2', 'mode2'], ['demo3', 'mode3'], ['', 'mode'], ['demo', ''], ['', '']]" type="foritem">
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${cell[0][0]}</arg>
+</arguments>
+<msg timestamp="20190422 16:58:25.249" level="INFO">demo1</msg>
+<status status="PASS" starttime="20190422 16:58:25.248" endtime="20190422 16:58:25.249"></status>
+</kw>
+<status status="PASS" starttime="20190422 16:58:25.248" endtime="20190422 16:58:25.249"></status>
+</kw>
+<status status="PASS" starttime="20190422 16:58:25.247" endtime="20190422 16:58:25.253"></status>
+</kw>
+<status status="PASS" starttime="20190422 16:58:25.242" endtime="20190422 16:58:25.253" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20190422 16:58:24.876" endtime="20190422 16:58:25.254"></status>
+</suite>
+<status status="PASS" starttime="20190422 16:58:24.839" endtime="20190422 16:58:25.256"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="DemoCSV">DemoCSV</stat>
+<stat pass="1" fail="0" id="s1-s1" name="Demo">DemoCSV.Demo</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20190422 16:58:24.689" level="WARN">Error in file 'C:\Users\Corallo\eclipse-workspace\DemoCSV\demo.robot': Section name 'Testcases' is deprecated. Use 'Test Cases' instead.</msg>
+<msg timestamp="20190422 16:58:24.689" level="WARN">Error in file 'C:\Users\Corallo\eclipse-workspace\DemoCSV\demo.robot': Invalid syntax in test case 'Methode 1 - Read file from csv': Using 'in' as a FOR loop separator is deprecated. Use 'IN' instead.</msg>
+<msg timestamp="20190422 16:58:24.689" level="WARN">Error in file 'C:\Users\Corallo\eclipse-workspace\DemoCSV\demo.robot': Invalid syntax in test case 'Methode 2 - Read file from csv': Using 'in' as a FOR loop separator is deprecated. Use 'IN' instead.</msg>
+</errors>
+</robot>
