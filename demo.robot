@@ -16,3 +16,5 @@ Methode 2 - Read file from csv
     ${ReadCSV}    Read CSV File    sample.csv
     :FOR  ${cell}   in   ${ReadCSV}
     \    Log   ${cell[0][0]}
+
+New Test case
