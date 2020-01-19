@@ -18,3 +18,5 @@ Methode 2 - Read file from csv
     \    Log   ${cell[0][0]}
 
 New Test case
+
+Other Test case
