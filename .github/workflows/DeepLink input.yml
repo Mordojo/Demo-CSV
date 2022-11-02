@@ -19,6 +19,6 @@ jobs:
           TEST_ENV: ${{github.event.inputs.Environment}}
         run: |
           echo Current Environment: ${{github.event.inputs.Environment}}
-          echo FIRST_NAME (lower): $FIRST_NAME | tr [:upper:] [:lower:]
-          echo Environment (upper): $TEST_ENV
-          echo Environment (lower): $TEST_ENV | tr [:upper:] [:lower:]
+          echo $FIRST_NAME | tr [:upper:] [:lower:]
+          echo "Environment (upper): $TEST_ENV"
+          echo "Environment (lower): $TEST_ENV | tr [:upper:] [:lower:]"
