@@ -1,12 +1,6 @@
 name: Greeting from Mordojo
 
-on:
-  workflow_dispatch:
-    inputs:
-      Environment:
-        description:  'Environment (Write TI, TA or PP)'
-        required: true
-        default: 'PP
+on: push
 
 jobs:
   my-job:
@@ -18,8 +12,6 @@ jobs:
           MY_VAR: Hi there! My name is
           FIRST_NAME: MORDOJO
           LAST_NAME: SNOUSSI
-          TEST_ENV: ${{github.event.inputs.Environment}} | tr [:upper:] [:lower:]
         run: |
           echo $MY_VAR $FIRST_NAME $LAST_NAME
           echo Lowercase String : $FIRST_NAME $LAST_NAME | tr [:upper:] [:lower:]
-          echo Current Environment: $TEST_ENV
