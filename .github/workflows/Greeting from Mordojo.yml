@@ -13,5 +13,5 @@ jobs:
           FIRST_NAME: MORDOJO
           LAST_NAME: SNOUSSI
         run: |
-          echo $MY_VAR $FIRST_NAME $SNOUSSI
-          echo ${{ steps.LAST_NAME.outputs.lowercase }}
+          echo $MY_VAR $FIRST_NAME $LAST_NAME
+          echo ${{ env.LAST_NAME.outputs.lowercase }}
