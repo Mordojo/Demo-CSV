@@ -1,0 +1,13 @@
+name: LowercaseWorkflow
+on: [push]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - id: string
+        uses: ASzc/change-string-case-action@v2
+        with:
+          string: XyZzY
+      - id: step2
+        run: echo ${{ steps.string.outputs.lowercase }}
