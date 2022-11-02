@@ -21,12 +21,16 @@ jobs:
         env:
           FIRST_NAME: MORDOJO
         run: |
-          if: ${{github.event.inputs.BrowserOS == 'Chrome, Windows'}}
+          if ${{github.event.inputs.BrowserOS == 'Chrome, Windows'}}; then
             TEST_BrowserOS=chrome_win
-          if: ${{github.event.inputs.BrowserOS == 'Chrome, Mac'}}
+          elif ${{github.event.inputs.BrowserOS == 'Chrome, Mac'}}; then
             TEST_BrowserOS=mac_win
+          else
+            echo "Please select a right Browser and OS"
+          fi
           TEST_ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:upper:]' '[:lower:]')
           echo Current Environment: ${{github.event.inputs.Environment}}
           echo $FIRST_NAME | tr [:upper:] [:lower:]
           echo $TEST_ENV
           echo mvn -dTest=data/$TEST_ENV/$TEST_ENV-manager.json -Browser=configuration/browsers/test_$TEST_BrowserOS.json
+        shell: bash
