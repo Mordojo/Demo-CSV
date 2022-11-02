@@ -21,10 +21,10 @@ jobs:
         env:
           FIRST_NAME: MORDOJO
         run: |
-          if: ${{github.event.inputs.BrowserOS == "Chrome, Windows"}}
-          TEST_BrowserOS=chrome_win
-          if: ${{github.event.inputs.BrowserOS == "Chrome, Mac"}}
-          TEST_BrowserOS=mac_win
+          if: ${{github.event.inputs.BrowserOS == 'Chrome, Windows'}}
+            TEST_BrowserOS=chrome_win
+          if: ${{github.event.inputs.BrowserOS == 'Chrome, Mac'}}
+            TEST_BrowserOS=mac_win
           TEST_ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:upper:]' '[:lower:]')
           echo Current Environment: ${{github.event.inputs.Environment}}
           echo $FIRST_NAME | tr [:upper:] [:lower:]
