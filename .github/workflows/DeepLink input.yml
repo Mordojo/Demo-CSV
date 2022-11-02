@@ -16,8 +16,9 @@ jobs:
       - name: Print EnvironmenT
         env:
           FIRST_NAME: MORDOJO
-          TEST_ENV: ${{github.event.inputs.Environment}} | tr [:upper:] [:lower:]
+          TEST_ENV: ${{github.event.inputs.Environment}}
         run: |
           echo Current Environment: ${{github.event.inputs.Environment}}
           echo $FIRST_NAME | tr [:upper:] [:lower:]
           echo $TEST_ENV
+          echo $TEST_ENV | tr [:upper:] [:lower:]
