@@ -16,4 +16,4 @@ jobs:
       - name: Print Environment
         run: |
           echo My environment is: ${{github.event.inputs.Environment}}
-          echo "REPO=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
+          echo My environment is: ${{github.event.inputs.Environment^^}}
