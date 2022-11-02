@@ -22,4 +22,4 @@ jobs:
           echo $FIRST_NAME | tr [:upper:] [:lower:]
           echo $TEST_ENV
           echo $TEST_ENV | tr [:upper:] [:lower:]
-          echo mvn -dTest=data/$TEST_ENV/$TEST_ENV-manager.json
+          echo mvn -dTest=data/$TEST_ENV | tr [:upper:] [:lower:]/$TEST_ENV | tr [:upper:] [:lower:]-manager.json
