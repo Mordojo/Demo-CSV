@@ -7,6 +7,10 @@ on:
         description:  'Environment (Write TI, TA or PP)'
         required: true
         default: 'PP'
+      BrowserOS:
+        description:  'Browser and OS (Write:  Chrome, Windows or Chrome, Mac)'
+        required: true
+        default: 'Chrome, Windows'
         
 jobs:
   Job1:
@@ -18,8 +22,11 @@ jobs:
           FIRST_NAME: MORDOJO
         run: |
           TEST_ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:upper:]' '[:lower:]')
+          if: ${{github.event.inputs.BrowserOS == Chrome, Windows}}
+          TEST_BrowserOS=chrome_win
+          if: ${{github.event.inputs.BrowserOS == Chrome, Mac}}
+          TEST_BrowserOS=mac_win
           echo Current Environment: ${{github.event.inputs.Environment}}
           echo $FIRST_NAME | tr [:upper:] [:lower:]
           echo $TEST_ENV
-          echo mvn -dTest=data/$TEST_ENV/$TEST_ENV-manager.json
-          echo mvn -dTest=data/$TEST_ENV/$TEST_ENV-manager.json
+          echo mvn -dTest=data/$TEST_ENV/$TEST_ENV-manager.json -Browser=configuration/browsers/test_$TEST_BrowserOS.json
