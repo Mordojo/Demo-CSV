@@ -12,7 +12,11 @@ jobs:
   Job1:
     name: My Job1
     runs-on: ubuntu-latest
+    env:
+        FIRST_NAME: MORDOJO
+        TEST_ENV: ${{github.event.inputs.Environment}} | tr [:lower:] [:upper:]
     steps:
-      - name: Print Environment
+      - name: Print EnvironmenT
         run: |
-          echo My environment is: ${{github.event.inputs.Environment}}
+          echo Current Environment (upper): ${{github.event.inputs.Environment}}
+          echo Current Environment (lower): $TEST_ENV
