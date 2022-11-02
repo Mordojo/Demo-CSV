@@ -14,4 +14,4 @@ jobs:
           LAST_NAME: SNOUSSI
         run: |
           echo $MY_VAR $FIRST_NAME $LAST_NAME
-          echo Lowercase String : $LAST_NAME | tr [:upper:] [:lower:]
+          echo Lowercase String : $FIRST_NAME $LAST_NAME | tr [:upper:] [:lower:]
