@@ -12,11 +12,11 @@ jobs:
   Job1:
     name: My Job1
     runs-on: ubuntu-latest
-    env:
-        FIRST_NAME: MORDOJO
-        TEST_ENV: ${{github.event.inputs.Environment}}
     steps:
       - name: Print EnvironmenT
+        env:
+          FIRST_NAME: MORDOJO
+          TEST_ENV: ${{github.event.inputs.Environment}}
         run: |
           echo Current Environment: ${{github.event.inputs.Environment}}
           echo FIRST_NAME (lower): $FIRST_NAME | tr [:upper:] [:lower:]
