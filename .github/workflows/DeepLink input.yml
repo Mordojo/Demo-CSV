@@ -7,7 +7,7 @@ on:
         description:  'Environment (Write TI, TA or PP)'
         required: true
         default: 'PP'
-
+        
 jobs:
   Job1:
     name: My Job1
@@ -16,10 +16,10 @@ jobs:
       - name: Print EnvironmenT
         env:
           FIRST_NAME: MORDOJO
-          TEST_ENV: $(echo ${{ github.event.inputs.Environment }} | tr '[:upper:]' '[:lower:]')
         run: |
+          TEST_ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:upper:]' '[:lower:]')
           echo Current Environment: ${{github.event.inputs.Environment}}
           echo $FIRST_NAME | tr [:upper:] [:lower:]
           echo $TEST_ENV
           echo mvn -dTest=data/$TEST_ENV/$TEST_ENV-manager.json
-          echo mvn -dTest=data/$TEST_ENV | tr [:upper:] [:lower:]/$TEST_ENV | tr [:upper:] [:lower:]-manager.json
+          echo mvn -dTest=data/$TEST_ENV/$TEST_ENV-manager.json
