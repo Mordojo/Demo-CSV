@@ -15,5 +15,4 @@ jobs:
     steps:
       - name: Print Environment
         run: |
-          echo $MY_VAR $FIRST_NAME $LAST_NAME
-          echo $MY_VAR $FIRST_NAME $LAST_NAME
+          echo My environment is: $MY_VAR ${{github.event.inputs.Environment}}
