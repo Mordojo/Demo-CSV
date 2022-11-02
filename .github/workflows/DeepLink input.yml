@@ -1,0 +1,19 @@
+name: DeepLink input
+
+on:
+  workflow_dispatch:
+    inputs:
+      Environment:
+        description:  'Environment (Write TI, TA or PP)'
+        required: true
+        default: 'PP'
+
+jobs:
+  Job1:
+    name: My Job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Environment
+        run: |
+          echo $MY_VAR $FIRST_NAME $LAST_NAME
+          echo $MY_VAR $FIRST_NAME $LAST_NAME
