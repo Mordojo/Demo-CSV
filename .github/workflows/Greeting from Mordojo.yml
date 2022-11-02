@@ -13,4 +13,4 @@ jobs:
           FIRST_NAME: MORDOJO
           LAST_NAME: SNOUSSI
         run: |
-          echo $MY_VAR $FIRST_NAME $LAST_NAME.
+          echo $MY_VAR $FIRST_NAME.toLowerCase() $LAST_NAME.toLowerCase()
