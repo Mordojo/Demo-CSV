@@ -34,17 +34,6 @@ jobs:
       MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
       JIRA_CREDENTIALS: ${{ secrets.JIRA_CREDENTIALS }}
     steps:
-      - uses: actions/upload-artifact@v2
-        if: ${{ always() }}
-        with:
-          name: recorded-tests
-          path: '*.mp4'
-          if-no-files-found: ignore
-      - uses: Actions/studio-setup-java-workspace@v1
-        with:
-          java-version: 11
-          java-distribution: liberica
-      - uses: actions/checkout@v2
       - name: Interac SecureKey Tests
         run: |
           if ${{github.event.inputs.BrowserOS == 'Chrome, Windows'}}; then
