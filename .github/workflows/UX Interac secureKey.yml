@@ -1,3 +1,32 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+# The user needs to write The Environment. From there, I will also make the variables for the data manager and whatever else.
+# For now, I will keep Chrome on Windows
+name: UX Interac SecureKey Manual Input
+
+on:
+  workflow_dispatch:
+    inputs:
+      Environment:
+        description: 'Environnement (Write: TI, TA, ou PP)'
+        required: true
+        default: 'PP'
+      Language:
+        description: 'Langue (Write: fr, ou en)'
+        required: true
+        default: 'fr'
+      BrowserOS:
+        description: 'Browser et OS ( Write one of the following: Chrome, Windows / Chrome, Mac / FireFox, Windows / Safari, Mac / Edge, Windows'
+        required: true
+        default: 'Chrome, Windows'
+
+#   schedule:
+#     - cron: '0 9,17 * * *'
+#   push:
+#     branches: [ master ]
+#   pull_request:
+#     branches: [ master ]
+
 jobs:
   InteracSecureKeyJob:
     runs-on: [ self-hosted, LG ]
