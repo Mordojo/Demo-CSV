@@ -1,0 +1,48 @@
+jobs:
+  InteracSecureKeyJob:
+    runs-on: [ self-hosted, LG ]
+    env:
+      MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+      JIRA_CREDENTIALS: ${{ secrets.JIRA_CREDENTIALS }}
+    steps:
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: recorded-tests
+          path: '*.mp4'
+          if-no-files-found: ignore
+      - uses: Actions/studio-setup-java-workspace@v1
+        with:
+          java-version: 11
+          java-distribution: liberica
+      - uses: actions/checkout@v2
+      - name: Interac SecureKey Tests
+        run: |
+          if ${{github.event.inputs.BrowserOS == 'Chrome, Windows'}}; then
+            TEST_BrowserOS=chrome_win_
+          elif ${{github.event.inputs.BrowserOS == 'Chrome, Mac'}}; then
+            TEST_BrowserOS=chrome_mac_
+          elif ${{github.event.inputs.BrowserOS == 'FireFox, Windows'}}; then
+            TEST_BrowserOS=firefox_win_
+          elif ${{github.event.inputs.BrowserOS == 'Safari, Mac'}}; then
+            TEST_BrowserOS=safari_mac_
+          elif ${{github.event.inputs.BrowserOS == 'Edge, Windows'}}; then
+            TEST_BrowserOS=edge_win_
+          else
+            echo "ERROR: Please write the Browser and OS correctly!"
+          fi
+          if ${{github.event.inputs.Environment == 'TI'}}; then
+            TEST_PLAN=CNP-99547
+          elif ${{github.event.inputs.Environment == 'TA'}}; then
+            TEST_PLAN=CNP-99548
+          elif ${{github.event.inputs.Environment == 'PP'}}; then
+            TEST_PLAN=CNP-99549
+          else
+            echo "ERROR: Please write the Environment correctly!"
+          fi
+          TEST_ENV=$(echo ${{ github.event.inputs.Environment }} | tr '[:upper:]' '[:lower:]')
+          echo Current Environment: ${{github.event.inputs.Environment}}
+          echo Current Language: ${{github.event.inputs.Language}}
+          echo Current Browser and OS: ${{github.event.inputs.BrowserOS}}
+          echo Command console: ./mvnw clean test -Dparallel=suites -DthreadCount=3 -Dbnc.data.format="JSON" -Dbnc.data.manager="data/$TEST_ENV/$TEST_ENV-data-manager.json" -Dbnc.host.url="https://app-$TEST_ENV.bnc.ca/" -Dbnc.host.description="${{github.event.inputs.Environment}}" -Dbnc.web.hub.name="SAUCELABS" -Dbnc.jira.credentials=$JIRA_CREDENTIALS -Dbnc.web.hub.url="https://automation-pemo-sbipv2:c9dc1e61-0bc2-42f8-9248-b5063c2ca6fa@ondemand.us-west-1.saucelabs.com:443/wd/hub" -Dbnc.web.browsers.config="configuration/transparent/config_$TEST_BrowserOS$TEST_ENV.json" -Dbnc.web.gui.lang=${{ github.event.inputs.Language }} -Dtest="secureKey.**.*" -Dgroups="category.SecureKey${{github.event.inputs.Environment}}" -DexcludedGroups="category.Ignore" -Dbnc.test.results.report=true -Dbnc.test.results.recipient="JIRA" -Dbnc.jira.url="https://jira.bnc.ca/" -Dbnc.jira.test.plan="$TEST_PLAN" -Dbnc.jira.test.environment="" -f pom.xml
+        shell: bash
